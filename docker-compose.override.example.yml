@@ -1,0 +1,9 @@
+# Optional local override — copy to docker-compose.override.yml
+# so `docker compose up` publishes http://127.0.0.1:8765 without Coolify.
+#
+#   cp docker-compose.override.example.yml docker-compose.override.yml
+#
+services:
+  edison-analysis-demo:
+    ports:
+      - "8765:8765"
