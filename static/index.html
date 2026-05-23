@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edison Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f6f3ec;
+      --surface: #fffcf6;
+      --ink: #1a1814;
+      --ink-muted: #6b6560;
+      --ink-faint: #9c9690;
+      --rule: #ddd8cf;
+      --rule-strong: #c4bdb2;
+      --accent: #8b4513;
+      --accent-soft: #f0e6d8;
+      --error-bg: #faf0ee;
+      --error-ink: #7a2e28;
+      --success: #2d5a3d;
+      --radius: 2px;
+      --ease: cubic-bezier(0.25, 1, 0.5, 1);
+      --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --font-sans: "Source Sans 3", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kicker {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0 0 0.35rem;
+    }
+
+    .masthead h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 400;
+      line-height: 1.08;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .deck {
+      margin: 0.65rem 0 0;
+      font-size: 1.0625rem;
+      color: var(--ink-muted);
+      max-width: 36ch;
+    }
+
+    .banner {
+      margin-top: 1rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.875rem;
+      border-left: 3px solid var(--error-ink);
+      background: var(--error-bg);
+      color: var(--error-ink);
+    }
+
+    /* Sections */
+    .section-label {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .panel {
+      margin-bottom: 2.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--rule-strong);
+      background: transparent;
+      padding: 0.5rem 0 0.75rem;
+      font: inherit;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      resize: vertical;
+      color: var(--ink);
+      transition: border-color 0.2s var(--ease);
+    }
+
+    textarea::placeholder { color: var(--ink-faint); }
+    textarea:focus {
+      outline: none;
+      border-bottom-color: var(--ink);
+    }
+
+    .dropzone {
+      margin-top: 1.25rem;
+      border: 1px dashed var(--rule-strong);
+      padding: 1.35rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      background: var(--surface);
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+
+    .dropzone:hover,
+    .dropzone:focus-visible,
+    .dropzone.dragover {
+      border-color: var(--ink-muted);
+      background: #fff;
+      outline: none;
+    }
+
+    .dropzone p { margin: 0.2rem 0; }
+    .dropzone .lead { font-size: 0.9375rem; color: var(--ink); }
+    .hint { font-size: 0.8125rem; color: var(--ink-faint); }
+
+    .file-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+      font-size: 0.875rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .file-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-muted);
+    }
+
+    .file-list li span:first-child { color: var(--ink); }
+
+    .actions {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    button {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.1rem;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--surface);
+      cursor: pointer;
+      transition: background 0.15s var(--ease), color 0.15s var(--ease), transform 0.1s var(--ease);
+    }
+
+    button:hover:not(:disabled) {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    button:active:not(:disabled) { transform: translateY(1px); }
+
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--rule-strong);
+    }
+
+    button.secondary:hover:not(:disabled) {
+      border-color: var(--ink);
+      background: var(--accent-soft);
+    }
+
+    .status-wrap {
+      margin-top: 1.25rem;
+      min-height: 2.5rem;
+    }
+
+    .status {
+      font-size: 0.9375rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      min-height: 1.4em;
+    }
+
+    .status.running { color: var(--ink); font-style: normal; }
+
+    .status.done {
+      color: var(--success);
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+    }
+
+    .progress-track {
+      height: 2px;
+      background: var(--rule);
+      margin-top: 0.5rem;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .progress-track.visible { opacity: 1; }
+
+    .progress-bar {
+      height: 100%;
+      width: 30%;
+      background: var(--accent);
+      animation: indeterminate 1.8s var(--ease) infinite;
+    }
+
+    @keyframes indeterminate {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+
+    .hidden { display: none !important; }
+
+    /* Results */
+    .results-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .results-head h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .results-meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tab {
+      background: transparent;
+      color: var(--ink-muted);
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.5rem 0.85rem;
+      margin-bottom: -1px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.75rem;
+    }
+
+    .tab:hover:not(.active) { color: var(--ink); background: transparent; }
+
+    .tab.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+      font-weight: 600;
+      background: transparent;
+    }
+
+    .tab-panel { display: none; animation: fadeIn 0.35s var(--ease); }
+    .tab-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #answer {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      max-width: 65ch;
+      color: var(--ink);
+    }
+
+    .empty-note {
+      font-style: italic;
+      color: var(--ink-faint);
+      font-size: 0.9375rem;
+    }
+
+    .cell {
+      border: 1px solid var(--rule);
+      margin-bottom: 0.75rem;
+      background: var(--surface);
+      animation: fadeIn 0.4s var(--ease);
+    }
+
+    .cell-header {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding: 0.45rem 0.75rem;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cell.error .cell-header {
+      color: var(--error-ink);
+      background: var(--error-bg);
+    }
+
+    .cell pre {
+      margin: 0;
+      padding: 0.65rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.55;
+      background: var(--surface);
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .cell-output {
+      border-top: 1px solid var(--rule);
+      color: var(--ink-muted);
+    }
+
+    .cell img {
+      display: block;
+      max-width: 100%;
+      margin: 0.5rem 0.75rem 0.75rem;
+      border: 1px solid var(--rule);
+    }
+
+    .artifacts {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .artifacts li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9375rem;
+    }
+
+    .artifacts a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s var(--ease);
+    }
+
+    .artifacts a:hover { border-bottom-color: var(--accent); }
+
+    .artifacts img {
+      display: block;
+      max-width: 100%;
+      margin-top: 0.65rem;
+      border: 1px solid var(--rule);
+    }
+
+    @media (max-width: 480px) {
+      .page { padding-top: 1.5rem; }
+      .actions { flex-direction: column; align-items: stretch; }
+      button { width: 100%; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .progress-bar { animation: none; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <p class="kicker">Research · Data analysis</p>
+      <h1>Ask your dataset a question.</h1>
+      <p class="deck">Upload CSV files, pose a research question, and follow Edison’s analysis as it runs.</p>
+      <p id="health-banner" class="banner hidden" role="alert"></p>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="compose-label">
+        <span id="compose-label" class="section-label">Compose</span>
+        <label for="query" class="hidden">Research question</label>
+        <textarea id="query" rows="3" placeholder="What patterns or risks stand out in this data?"></textarea>
+
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Upload CSV files">
+          <p class="lead">Drop CSV files here, or click to browse</p>
+          <p class="hint">Up to 50 files · 50 MB each · 200 MB total</p>
+          <input id="file-input" type="file" accept=".csv" multiple hidden />
+        </div>
+        <ul id="file-list" class="file-list" aria-live="polite"></ul>
+
+        <div class="actions">
+          <button type="button" id="sample-btn" class="secondary">Sample dataset</button>
+          <button type="button" id="analyze-btn">Run analysis</button>
+          <button type="button" id="reset-btn" class="secondary hidden">Cancel</button>
+        </div>
+
+        <div class="status-wrap">
+          <p id="status-line" class="status" aria-live="polite"></p>
+          <div id="progress-track" class="progress-track" aria-hidden="true">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="panel hidden" aria-labelledby="results-title">
+        <div class="results-head">
+          <h2 id="results-title">Findings</h2>
+          <span id="results-meta" class="results-meta"></span>
+        </div>
+        <nav class="tabs" role="tablist" aria-label="Result views">
+          <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="answer" id="tab-btn-answer">Answer</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="notebook" id="tab-btn-notebook">Notebook</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="artifacts" id="tab-btn-artifacts">Artifacts</button>
+        </nav>
+        <div id="tab-answer" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-answer">
+          <div id="answer" class="empty-note">Analysis in progress…</div>
+        </div>
+        <div id="tab-notebook" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-notebook" hidden>
+          <div id="notebook" class="empty-note">Waiting for notebook cells…</div>
+        </div>
+        <div id="tab-artifacts" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-artifacts" hidden>
+          <ul id="artifacts" class="artifacts"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const queryEl = $("query"), dropzone = $("dropzone"), fileInput = $("file-input");
+    const fileList = $("file-list"), analyzeBtn = $("analyze-btn"), sampleBtn = $("sample-btn");
+    const resetBtn = $("reset-btn"), statusLine = $("status-line"), resultsSection = $("results");
+    const healthBanner = $("health-banner"), answerEl = $("answer"), notebookEl = $("notebook");
+    const artifactsEl = $("artifacts"), progressTrack = $("progress-track");
+    const resultsMeta = $("results-meta");
+
+    let selectedFiles = [], useSample = false, eventSource = null, lastCellCount = 0;
+
+    const DEFAULT_QUERY =
+      "What are the main themes in this HR data, and which areas need immediate attention?";
+
+    const WAITING_COPY = [
+      "Uploading datasets to Edison…",
+      "Starting the analysis notebook…",
+      "Running statistical passes on your files…",
+      "Building cross-dataset comparisons…",
+      "Synthesising findings into a written summary…",
+    ];
+
+    queryEl.value = DEFAULT_QUERY;
+
+    async function checkHealth() {
+      try {
+        const data = await (await fetch("/api/health")).json();
+        if (!data.edison_configured) {
+          healthBanner.textContent =
+            "Edison API key missing. Copy .env.example to .env and set EDISON_API_KEY.";
+          healthBanner.classList.remove("hidden");
+          analyzeBtn.disabled = sampleBtn.disabled = true;
+        }
+      } catch {
+        healthBanner.textContent = "Cannot reach the server. Run ./run.sh first.";
+        healthBanner.classList.remove("hidden");
+      }
+    }
+
+    function fmtBytes(n) {
+      if (n < 1024) return n + " B";
+      if (n < 1048576) return (n / 1024).toFixed(1) + " KB";
+      return (n / 1048576).toFixed(1) + " MB";
+    }
+
+    function renderFileList() {
+      fileList.innerHTML = "";
+      if (useSample) {
+        fileList.innerHTML = "<li><span>sample_data/</span><span>7 CSV files</span></li>";
+        return;
+      }
+      selectedFiles.forEach((f) => {
+        const li = document.createElement("li");
+        li.innerHTML = "<span>" + esc(f.name) + "</span><span>" + fmtBytes(f.size) + "</span>";
+        fileList.appendChild(li);
+      });
+    }
+
+    function setRunning(running) {
+      analyzeBtn.disabled = sampleBtn.disabled = running;
+      dropzone.style.pointerEvents = running ? "none" : "auto";
+      dropzone.setAttribute("aria-disabled", running ? "true" : "false");
+      resetBtn.classList.toggle("hidden", !running);
+      progressTrack.classList.toggle("visible", running);
+      statusLine.classList.toggle("running", running);
+      statusLine.classList.remove("done");
+    }
+
+    function fmtElapsed(sec) {
+      const m = Math.floor(sec / 60), s = sec % 60;
+      return m + ":" + String(s).padStart(2, "0");
+    }
+
+    function waitingMessage(elapsed) {
+      const idx = Math.min(
+        WAITING_COPY.length - 1,
+        Math.floor(elapsed / 25)
+      );
+      return WAITING_COPY[idx];
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function renderNotebook(cells) {
+      if (!cells?.length) {
+        notebookEl.className = "empty-note";
+        notebookEl.textContent = "Waiting for notebook cells…";
+        return;
+      }
+      notebookEl.className = "";
+      notebookEl.innerHTML = "";
+      cells.forEach((cell, i) => {
+        const div = document.createElement("div");
+        div.className = "cell" + (cell.status === "error" ? " error" : "");
+        if (cells.length > lastCellCount && i >= lastCellCount) {
+          div.style.animationDelay = "0.05s";
+        }
+        const n = cell.execution_count ?? "?";
+        const label = cell.display_text || "code";
+        div.innerHTML =
+          '<div class="cell-header">In [' + n + "] · " + esc(label) + "</div>";
+        const code = document.createElement("pre");
+        code.textContent = cell.code || "";
+        div.appendChild(code);
+        (cell.outputs || []).forEach((out) => {
+          if (out.output_type !== "stream" && out.output_type !== "error" && out.data?.["image/png"]) {
+            const img = document.createElement("img");
+            img.src = "data:image/png;base64," + out.data["image/png"];
+            img.alt = "Chart from cell " + n;
+            div.appendChild(img);
+            return;
+          }
+          const pre = document.createElement("pre");
+          pre.className = "cell-output";
+          if (out.output_type === "stream") pre.textContent = out.text || "";
+          else if (out.output_type === "error") pre.textContent = out.ename + ": " + out.evalue;
+          else if (out.data?.["text/plain"]) pre.textContent = out.data["text/plain"];
+          div.appendChild(pre);
+        });
+        notebookEl.appendChild(div);
+      });
+      lastCellCount = cells.length;
+    }
+
+    function renderArtifacts(artifacts) {
+      artifactsEl.innerHTML = "";
+      if (!artifacts?.length) {
+        artifactsEl.innerHTML = "<li class=\"empty-note\">No downloadable artifacts for this run.</li>";
+        return;
+      }
+      artifacts.forEach((a) => {
+        const li = document.createElement("li");
+        if (a.error) li.textContent = a.filename + ": " + a.error;
+        else if (a.entry_id) {
+          const link = document.createElement("a");
+          link.href = "/api/artifacts/" + a.entry_id;
+          link.textContent = a.filename;
+          link.download = a.filename;
+          li.appendChild(link);
+          if (a.size_bytes) {
+            li.appendChild(document.createTextNode(" · " + fmtBytes(a.size_bytes)));
+          }
+          if (a.inline_data_url) {
+            const img = document.createElement("img");
+            img.src = a.inline_data_url;
+            img.alt = "Preview of " + a.filename;
+            li.appendChild(img);
+          }
+        } else li.textContent = a.filename || "artifact";
+        artifactsEl.appendChild(li);
+      });
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll(".tab").forEach((btn) => {
+        const on = btn.dataset.tab === name;
+        btn.classList.toggle("active", on);
+        btn.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      document.querySelectorAll(".tab-panel").forEach((panel) => {
+        const on = panel.id === "tab-" + name;
+        panel.classList.toggle("active", on);
+        panel.hidden = !on;
+      });
+    }
+
+    function reset() {
+      if (eventSource) { eventSource.close(); eventSource = null; }
+      setRunning(false);
+      statusLine.textContent = "";
+      lastCellCount = 0;
+    }
+
+    async function startAnalysis(sample) {
+      reset();
+      useSample = sample;
+      if (!sample && !selectedFiles.length) {
+        statusLine.textContent = "Add CSV files or load the sample dataset.";
+        return;
+      }
+      renderFileList();
+      setRunning(true);
+      resultsSection.classList.remove("hidden");
+      answerEl.className = "empty-note";
+      answerEl.textContent = "Analysis in progress…";
+      notebookEl.className = "empty-note";
+      notebookEl.textContent = "Waiting for notebook cells…";
+      artifactsEl.innerHTML = "";
+      resultsMeta.textContent = "";
+      statusLine.textContent = WAITING_COPY[0];
+
+      const form = new FormData();
+      form.append("query", queryEl.value.trim() || DEFAULT_QUERY);
+      form.append("use_sample", sample ? "true" : "false");
+      if (!sample) selectedFiles.forEach((f) => form.append("files", f));
+
+      let taskId;
+      try {
+        const res = await fetch("/api/analyze", { method: "POST", body: form });
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.detail || res.statusText);
+        taskId = body.task_id;
+      } catch (err) {
+        statusLine.textContent = "Could not start: " + err.message;
+        setRunning(false);
+        return;
+      }
+
+      eventSource = new EventSource("/api/stream/" + taskId);
+      eventSource.onmessage = (ev) => {
+        let msg;
+        try { msg = JSON.parse(ev.data); } catch { return; }
+        const { type, data } = msg;
+        if (type === "polling") {
+          const elapsed = data.elapsed_seconds || 0;
+          const detail = data.message || waitingMessage(elapsed);
+          statusLine.textContent = detail + " · " + fmtElapsed(elapsed);
+          renderNotebook(data.notebook_cells);
+          if (data.notebook_cells?.length) {
+            resultsMeta.textContent = data.notebook_cells.length + " cells";
+          }
+        } else if (type === "complete") {
+          statusLine.textContent = "Analysis complete.";
+          statusLine.classList.remove("running");
+          statusLine.classList.add("done");
+          progressTrack.classList.remove("visible");
+          answerEl.className = "";
+          answerEl.textContent = data.answer || "No written summary returned.";
+          renderNotebook(data.notebook_cells);
+          renderArtifacts(data.artifacts || []);
+          if (data.stats) {
+            resultsMeta.textContent =
+              data.stats.cell_count + " cells · " + (data.stats.artifact_count || 0) + " artifacts";
+          }
+          eventSource.close();
+          setRunning(false);
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (type === "error") {
+          statusLine.textContent = data.message;
+          statusLine.classList.remove("running");
+          eventSource.close();
+          setRunning(false);
+        }
+      };
+      eventSource.onerror = () => {
+        statusLine.textContent = "Connection lost. Refresh and try again.";
+        setRunning(false);
+      };
+    }
+
+    dropzone.addEventListener("click", () => fileInput.click());
+    dropzone.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+    });
+    dropzone.addEventListener("dragover", (e) => { e.preventDefault(); dropzone.classList.add("dragover"); });
+    dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+    dropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropzone.classList.remove("dragover");
+      useSample = false;
+      selectedFiles = Array.from(e.dataTransfer.files).filter((f) => f.name.toLowerCase().endsWith(".csv"));
+      renderFileList();
+    });
+    fileInput.addEventListener("change", () => {
+      useSample = false;
+      selectedFiles = Array.from(fileInput.files || []);
+      renderFileList();
+    });
+    analyzeBtn.addEventListener("click", () => startAnalysis(false));
+    sampleBtn.addEventListener("click", () => {
+      useSample = true;
+      selectedFiles = [];
+      renderFileList();
+      startAnalysis(true);
+    });
+    resetBtn.addEventListener("click", reset);
+    document.querySelectorAll(".tab").forEach((btn) => {
+      btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+    });
+
+    checkHealth();
+  </script>
+</body>
+</html>

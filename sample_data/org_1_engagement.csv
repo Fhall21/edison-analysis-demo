@@ -1,0 +1,120 @@
+comments,date,department,employee_id,overall_engagement,score_management,score_safety,score_worklife,survey_id
+Excellent,2024-01-24,Technology Solutions & Support,10000,8,6,7,7,191268
+Good,2024-01-21,Incident Management,10001,6,6,6,6,993810
+Good,2024-01-22,Cyber Risk & Strategy,10002,7,5,8,5,670227
+Good,2024-01-13,Incident Management,10003,7,5,8,5,779166
+Average,2024-01-21,Data & Information Security,10004,4,5,6,5,902758
+Average,2024-01-25,Technology Solutions & Support,10005,6,4,9,7,568658
+Needs Improvement,2024-02-01,Incident Management,10006,5,6,6,4,623220
+Needs Improvement,2024-01-25,Data & Information Security,10007,4,4,8,4,740182
+Average,2024-01-12,Incident Management,10008,4,5,7,4,263915
+Good,2024-01-20,Technology Solutions & Support,10010,8,6,9,5,771928
+Average,2024-01-16,Technology Solutions & Support,10011,6,4,7,5,404762
+Needs Improvement,2024-01-15,Data & Information Security,10012,5,3,7,3,635790
+Average,2024-01-19,Technology Solutions & Support,10013,4,4,7,5,824596
+Good,2024-01-30,Cyber Risk & Strategy,10014,7,5,7,5,524327
+Good,2024-01-24,Cyber Risk & Strategy,10015,6,6,8,5,269579
+Needs Improvement,2024-02-08,Data & Information Security,10016,3,3,6,4,345143
+Good,2024-02-07,Incident Management,10017,6,5,7,4,263973
+Needs Improvement,2024-01-21,Data & Information Security,10018,5,5,8,4,872251
+Average,2024-01-13,Incident Management,10019,5,6,8,5,553590
+Needs Improvement,2024-01-24,Incident Management,10020,4,6,6,4,814981
+Average,2024-01-26,Data & Information Security,10021,6,5,7,4,290956
+Needs Improvement,2024-01-24,Incident Management,10022,5,6,6,5,903450
+Needs Improvement,2024-01-28,Incident Management,10023,5,5,7,5,906918
+Good,2024-01-19,Data & Information Security,10024,7,5,7,5,372286
+Average,2024-01-26,Technology Solutions & Support,10025,6,6,7,5,253456
+Good,2024-01-15,Incident Management,10026,6,6,8,5,737824
+Needs Improvement,2024-01-18,Data & Information Security,10027,5,5,6,3,166634
+Excellent,2024-02-03,Technology Solutions & Support,10028,8,6,9,6,279829
+Needs Improvement,2024-01-24,Incident Management,10029,5,5,8,4,520666
+Needs Improvement,2024-02-07,Data & Information Security,10030,4,3,8,3,343612
+Good,2024-02-05,Incident Management,10031,7,6,7,4,141228
+Average,2024-02-03,Data & Information Security,10032,6,4,6,5,422713
+Good,2024-01-22,Incident Management,10033,7,5,8,4,569810
+Needs Improvement,2024-01-24,Technology Solutions & Support,10034,5,6,8,5,512858
+Average,2024-01-26,Data & Information Security,10035,6,3,6,5,757741
+Good,2024-02-04,Technology Solutions & Support,10036,6,5,9,5,359320
+Average,2024-02-07,Cyber Risk & Strategy,10037,7,6,8,6,182791
+Average,2024-02-07,Cyber Risk & Strategy,10038,6,6,8,5,785535
+Good,2024-02-03,Data & Information Security,10039,6,5,8,3,193454
+Average,2024-01-19,Data & Information Security,10040,6,5,7,3,880706
+Good,2024-01-25,Incident Management,10041,6,5,7,4,302248
+Good,2024-01-19,Technology Solutions & Support,10042,7,5,7,6,597892
+Average,2024-01-11,Incident Management,10043,6,6,8,4,340109
+Average,2024-02-06,Incident Management,10044,6,5,6,4,840708
+Needs Improvement,2024-01-22,Data & Information Security,10045,5,5,6,5,792574
+Needs Improvement,2024-01-22,Incident Management,10046,5,4,6,6,229554
+Good,2024-01-13,Data & Information Security,10047,6,4,8,5,267824
+Good,2024-01-13,Cyber Risk & Strategy,10048,6,6,6,5,572658
+Needs Improvement,2024-01-11,Incident Management,10049,5,4,6,6,840496
+Average,2024-01-26,Data & Information Security,10050,5,4,8,5,633171
+Average,2024-01-28,Data & Information Security,10051,5,3,6,4,563050
+Needs Improvement,2024-02-02,Cyber Risk & Strategy,10052,5,6,6,5,324857
+Average,2024-01-19,Data & Information Security,10053,5,5,7,4,325280
+Good,2024-01-20,Incident Management,10054,6,6,6,6,968341
+Average,2024-02-03,Cyber Risk & Strategy,10055,6,6,8,7,228341
+Needs Improvement,2024-01-19,Incident Management,10056,4,4,6,4,461165
+Average,2024-02-01,Data & Information Security,10057,6,3,7,4,588791
+Good,2024-01-18,Technology Solutions & Support,10058,6,6,8,5,611971
+Needs Improvement,2024-01-13,Data & Information Security,10059,4,5,7,3,592433
+Average,2024-01-22,Cyber Risk & Strategy,10060,5,4,7,5,199598
+Good,2024-02-05,Incident Management,10061,6,6,7,4,180243
+Good,2024-01-12,Data & Information Security,10062,6,5,7,3,976072
+Average,2024-01-29,Technology Solutions & Support,10063,7,4,7,7,326597
+Good,2024-01-24,Incident Management,10064,6,4,8,6,168337
+Average,2024-02-02,Data & Information Security,10065,6,5,7,3,966987
+Average,2024-01-12,Incident Management,10066,6,6,6,6,405501
+Needs Improvement,2024-02-01,Cyber Risk & Strategy,10067,5,5,6,5,688395
+Needs Improvement,2024-02-05,Technology Solutions & Support,10068,5,4,7,7,138067
+Average,2024-02-02,Cyber Risk & Strategy,10069,5,5,8,6,305255
+Average,2024-02-04,Incident Management,10070,6,6,6,5,893138
+Average,2024-02-01,Incident Management,10071,6,4,8,4,614234
+Good,2024-01-23,Cyber Risk & Strategy,10072,7,4,6,7,991072
+Average,2024-01-25,Technology Solutions & Support,10073,7,6,9,7,247274
+Needs Improvement,2024-01-28,Technology Solutions & Support,10074,5,4,7,6,885567
+Needs Improvement,2024-01-20,Incident Management,10075,4,4,7,4,307475
+Needs Improvement,2024-01-25,Data & Information Security,10076,4,3,8,5,465535
+Good,2024-01-20,Incident Management,10077,6,5,6,6,998211
+Average,2024-01-14,Incident Management,10078,6,5,7,5,727567
+Needs Improvement,2024-01-15,Data & Information Security,10079,4,5,8,3,451528
+Average,2024-01-20,Data & Information Security,10080,4,3,7,5,565108
+Average,2024-01-26,Incident Management,10081,7,6,7,5,300688
+Average,2024-02-05,Incident Management,10082,5,6,7,5,734537
+Average,2024-02-01,Incident Management,10083,4,4,6,6,332212
+Good,2024-01-22,Cyber Risk & Strategy,10084,6,6,8,5,945096
+Good,2024-01-29,Data & Information Security,10085,6,3,7,4,596853
+Good,2024-01-21,Incident Management,10086,7,6,6,6,150355
+Needs Improvement,2024-02-05,Incident Management,10087,5,4,7,6,332386
+Good,2024-01-22,Cyber Risk & Strategy,10088,7,5,7,5,849282
+Good,2024-01-13,Technology Solutions & Support,10089,7,6,9,5,573774
+Average,2024-01-27,Incident Management,10090,6,5,7,5,180744
+Good,2024-02-07,Incident Management,10091,6,6,6,6,438413
+Average,2024-02-06,Incident Management,10092,5,4,6,4,898884
+Average,2024-01-23,Incident Management,10093,5,4,6,6,783392
+Average,2024-01-27,Data & Information Security,10094,6,3,6,5,352599
+Good,2024-02-05,Incident Management,10095,6,5,8,4,161274
+Needs Improvement,2024-01-31,Data & Information Security,10096,5,4,8,5,185299
+Average,2024-01-19,Data & Information Security,10097,5,4,8,3,948156
+Good,2024-02-06,Technology Solutions & Support,10098,8,5,9,6,951473
+Average,2024-01-30,Data & Information Security,10099,4,4,6,3,130185
+Good,2024-01-31,Incident Management,10100,6,4,7,5,481833
+Good,2024-01-24,Incident Management,10101,6,6,6,6,737768
+Average,2024-01-31,Cyber Risk & Strategy,10102,5,4,8,6,697746
+Good,2024-01-15,Incident Management,10103,6,4,6,6,282468
+Needs Improvement,2024-01-29,Cyber Risk & Strategy,10104,5,5,7,5,223438
+Good,2024-02-03,Data & Information Security,10105,6,4,7,4,501361
+Average,2024-01-29,Data & Information Security,10106,6,3,8,3,223822
+Average,2024-01-24,Data & Information Security,10107,6,4,7,5,381125
+Good,2024-01-27,Data & Information Security,10108,6,5,8,3,486334
+Good,2024-01-28,Cyber Risk & Strategy,10109,6,6,7,5,882613
+Average,2024-01-29,Data & Information Security,10110,5,4,6,5,997348
+Needs Improvement,2024-02-05,Technology Solutions & Support,10111,5,4,8,7,159375
+Good,2024-02-05,Data & Information Security,10112,6,3,8,5,205508
+Poor,2024-01-12,Data & Information Security,10113,3,3,6,4,437744
+Needs Improvement,2024-02-02,Data & Information Security,10114,5,4,7,5,695012
+Needs Improvement,2024-01-15,Data & Information Security,10115,4,4,8,3,952686
+Good,2024-01-21,Data & Information Security,10116,6,4,8,5,682272
+Average,2024-02-04,Technology Solutions & Support,10117,7,4,9,7,343064
+Good,2024-01-16,Incident Management,10118,6,5,8,5,426500
+Average,2024-01-26,Data & Information Security,10119,4,3,7,3,800022

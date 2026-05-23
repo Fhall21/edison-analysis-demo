@@ -1,0 +1,17 @@
+claim_amount,claim_id,department,employee_id,incident_date,injury_type,outcome,recovery_time
+17931.21,502254,Incident Management,10003,2024-01-12,Vehicle Accident,Approved,37.6
+2011.56,849980,Incident Management,10022,2024-02-06,Other,Approved,26.6
+10840.38,791998,Incident Management,10026,2024-08-04,Ergonomic Injury,Pending,26.4
+11807.07,253134,Technology Solutions & Support,10028,2024-06-30,Overexertion,Under Investigation,56.2
+4502.34,164736,Technology Solutions & Support,10034,2024-09-01,Machinery Injury,Denied,35.3
+14999.53,323673,Technology Solutions & Support,10036,2024-12-22,Repetitive Motion Injury,Under Investigation,38.7
+18421.06,204660,Data & Information Security,10039,2024-07-07,Slip and Fall,Closed,51.6
+4970.81,722149,Incident Management,10070,2024-12-01,Chemical Exposure,Closed,70.4
+9647.51,293462,Incident Management,10078,2024-02-19,Overexertion,Closed,29.2
+1978.6,928881,Data & Information Security,10080,2024-11-24,Vehicle Accident,Pending,25.9
+12558.34,724607,Incident Management,10081,2024-11-17,Machinery Injury,Under Investigation,23.9
+3791.84,841056,Incident Management,10082,2024-03-10,Machinery Injury,Pending,11.8
+17047.47,835303,Incident Management,10087,2024-04-01,Slip and Fall,Closed,36.3
+6423.89,688353,Technology Solutions & Support,10089,2024-02-19,Overexertion,Closed,34.9
+2911.32,521881,Incident Management,10091,2024-11-20,Psychological Injury,Pending,30.7
+8726.72,300046,Incident Management,10100,2024-07-27,Other,Denied,56.4

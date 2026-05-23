@@ -1,0 +1,8 @@
+department,employee_id,exit_date,job_role,reason_for_leaving,satisfaction_score,tenure_years
+Incident Management,10009,2024-01-28,Employee,Job Dissatisfaction,0.6,14
+Technology Solutions & Support,10011,2024-02-29,Employee,Lack of Recognition,0.68,5
+Data & Information Security,10032,2024-06-07,Employee,Unhealthy Work Environment,0.54,18
+Incident Management,10090,2024-04-02,Employee,Job Dissatisfaction,0.6,2
+Incident Management,10093,2024-07-17,Employee,Unhealthy Work Environment,0.6,15
+Data & Information Security,10108,2024-11-13,Employee,Job Dissatisfaction,0.54,16
+Technology Solutions & Support,10117,2024-09-03,Employee,Job Dissatisfaction,0.68,9

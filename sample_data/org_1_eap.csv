@@ -1,0 +1,19 @@
+date_of_contact,department,eap_case_id,employee_id,notes,outcome,reason
+2024-05-05,Incident Management,912286,10001,Reports feeling overwhelmed by daily tasks.,Closed,Stress
+2024-09-06,Incident Management,679804,10006,Feels guilty about missing family events.,Referred,Work-life Balance
+2024-02-17,Technology Solutions & Support,380698,10010,Experiencing muscle tension and headaches.,Referred,Stress
+2024-09-15,Data & Information Security,716662,10018,Frequent tearfulness during day.,Ongoing,Depression
+2024-10-17,Incident Management,292569,10019,Wants strategies to better separate work and home life.,Ongoing,Work-life Balance
+2024-06-08,Incident Management,813439,10022,Reports persistent low mood.,Ongoing,Depression
+2024-01-05,Technology Solutions & Support,343210,10028,Desires better scheduling to fit personal needs.,Referred,Work-life Balance
+2024-02-23,Data & Information Security,846432,10032,Avoidance of stressful situations.,Follow-up Required,Anxiety
+2024-06-19,Incident Management,693537,10046,Unable to relax after work hours.,Referred,Stress
+2024-10-09,Incident Management,295809,10066,Reports neglecting self-care due to work demands.,Ongoing,Work-life Balance
+2024-12-10,Incident Management,757091,10075,Feeling on edge throughout the workday.,Referred,Stress
+2024-08-29,Cyber Risk & Strategy,804534,10084,Concerned about child’s wellbeing.,Closed,Family/Caregiver Issues
+2024-05-14,Technology Solutions & Support,333222,10089,Wants strategies to better separate work and home life.,Referred,Work-life Balance
+2024-06-24,Incident Management,504819,10091,Racing thoughts impacting concentration.,Referred,Anxiety
+2024-03-23,Data & Information Security,925863,10094,Loss of interest in usual activities.,Ongoing,Depression
+2024-10-12,Data & Information Security,517808,10114,Short-tempered with colleagues.,Referred,Stress
+2024-03-31,Data & Information Security,106068,10115,Experiencing muscle tension and headaches.,Referred,Stress
+2024-02-17,Incident Management,797731,10118,Avoidance of stressful situations.,Resolved,Anxiety
